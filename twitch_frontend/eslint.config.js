@@ -36,3 +36,28 @@ export default [
     },
   },
 ]
+// src/agoraConfig.js
+import { createClient, createMicrophoneAndCameraTracks } from 'agora-rtc-sdk-ng';
+
+const appId = '<YOUR_AGORA_APP_ID>'; // Replace with your Agora App ID
+let client = createClient({ mode: 'rtc', codec: 'vp8' });
+let localTracks = { videoTrack: null, audioTrack: null };
+
+export const joinChannel = async (channelName, token, uid) => {
+  await client.join(appId, channelName, token, uid);
+  localTracks = await createMicrophoneAndCameraTracks();
+  await client.publish(Object.values(localTracks));
+  console.log('Published local stream');
+  return localTracks;
+};
+
+export const leaveChannel = async () => {
+  localTracks.audioTrack?.close();
+  localTracks.videoTrack?.close();
+  await client.leave();
+  console.log('Left the channel');
+};
+
+export const subscribeToRemoteUsers = (onRemoteUserPublished) => {
+  client.on('user-published', onRemoteUserPublished);
+};
