@@ -143,9 +143,11 @@ We also aim to optimize the platform for future scalability, ensuring it can han
 
 ---
 
-## 🌐 Live Demo
+## 🌐 Deployed Links
 
 👉 [StreamMingle Deployed Link](https://twitch-frontend-cp7u.vercel.app/)
+👉 [YouTube Demo](https://devpost.com/software/streammingle)
+👉 [Blog](https://devpost.com/software/streammingle)
 
 ---
 
